@@ -2,7 +2,7 @@
   <div class="product-carousel-wrap">
     <div class="single-product-wrap">
           <!-- <v-touch class=""></v-touch> -->
-          <carousel :perPage="1" :loop="true" :paginationEnabled="true" class="image-carousel">
+          <carousel :perPage="1" :loop="true" :paginationPosition="'top'" :paginationEnabled="true" class="image-carousel">
            <slide class="img image" >
             <img :src="'/storage/products/' + product.image" alt />
           </slide>

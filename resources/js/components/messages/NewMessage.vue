@@ -45,9 +45,9 @@
     </div>
     <div class="message-content"></div>
     <div class="send-message">
-      <i class="far fa-images"></i>
+      <i class="far fa-images" ></i>
       <input type="text" class="message-input" placeholder="Aa" />
-      <i class="far fa-paper-plane"></i>
+      <i class="far fa-paper-plane"  ></i>
     </div>
   </div>
 </template>
@@ -63,7 +63,7 @@ export default {
       search: "",
       users: [],
       selectedUsers: [],
-      selectedUser: ""
+      selectedUser: "",
     };
   },
   mounted() {
@@ -73,6 +73,9 @@ export default {
     });
   },
   methods: {
+    sendmessage(event){
+      console.log('hi')
+    },
     showAllUsers() {
       this.$anime({
         targets: ".user-list",

@@ -37,11 +37,12 @@
             <span class="checkmark"></span>
           </label>
         </div>
-        <div class="filter">
+        <div class="filter" @click="showCategoryFilters">
           <span>Filteri</span>
           <i class="fas fa-sliders-h"></i>
         </div>
       </div>
+        <!-- <filters></filters> -->
       <div class="additional-query">
         <div class="search-by">
           <p>
@@ -77,7 +78,13 @@
 </template>
 
 <script>
+import filters from './filters';
+import { EventBus } from "../../app";
+
 export default {
+  components:{
+    filters:filters
+  },
   data() {
     return {
       products: [],
@@ -93,6 +100,9 @@ export default {
     this.$anime;
   },
   methods: {
+    showCategoryFilters(){
+      EventBus.$emit('showCategoryFilters')
+    },
     additionalQuery() {
       if (this.query.length == 0) {
         $(".additional-query").removeClass("show-additional-query");

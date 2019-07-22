@@ -66,7 +66,7 @@
               href="/logout"
               onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
             >Odjavi se</a>
-            <form id="logout-form" action="logout" method="POST" style="display: none;">
+            <form id="logout-form" action="/logout" method="POST" style="display: none;">
               <input type="hidden" name="_token" :value="csrf">
             </form>
           </li>

@@ -177,6 +177,49 @@ body {
   font-size: 16px;
 }
 
+.category-filters-wrap {
+  margin: 10px 0px !important;
+  display: inline-flex;
+}
+
+.category-filters-wrap .category-filter-by {
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  -webkit-transform-origin: top;
+          transform-origin: top;
+  transition: 0.3s ease;
+}
+
+.category-filters-wrap .category-filter-by p {
+  margin: 0;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  color: #003368;
+  font-weight: 900;
+}
+
+.category-filters-wrap ul {
+  margin: 0;
+  padding: 0;
+}
+
+.category-filters-wrap ul li {
+  list-style-type: none;
+}
+
+.category-filters-wrap ul li a {
+  text-decoration: none;
+}
+
+.show-category-filters {
+  visibility: visible !important;
+  -webkit-transform: translateY(0px) !important;
+          transform: translateY(0px) !important;
+  height: 100% !important;
+  transition: 1s ease;
+}
+
 .nav-button {
   border: none;
   background: none;
@@ -637,7 +680,7 @@ body {
           transform: scale(0);
   background-color: #ffffff;
   border-radius: 4px;
-  overflow: scroll;
+  overflow: hidden;
 }
 
 .chat-wrap .img {
@@ -742,8 +785,8 @@ body {
 
 .single-chat-main-heading,
 .chat-new-heading {
-  -webkit-transform: translateY(40px);
-          transform: translateY(40px);
+  -webkit-transform: translateY(30px);
+          transform: translateY(30px);
   opacity: 0;
   margin: 0;
   position: fixed;
@@ -758,26 +801,29 @@ body {
 }
 
 .all-chat-messages {
-  position: fixed;
-  bottom: 0;
-  right: -450px;
-  z-index: 15;
+  -webkit-transform: translateX(-450px);
+          transform: translateX(-450px);
   opacity: 0;
-  border-radius: 8px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .all-chat-messages .all-messages-header {
-  -webkit-transform: scale(0);
-          transform: scale(0);
-  width: 0;
   height: auto;
   opacity: 0;
   border-bottom: 1px solid #f4f4f4;
 }
 
+.all-chat-messages i {
+  padding: 20px;
+}
+
 .all-chat-messages .chat-messages {
-  background-color: #ffffff;
   height: 80%;
+  padding: 20px;
 }
 
 .all-chat-messages .img {
@@ -803,7 +849,9 @@ body {
 }
 
 .send-message {
-  bottom: 20px;
+  position: fixed;
+  bottom: 0;
+  margin: 0 !important;
   width: 100%;
   left: 0;
   display: flex;
@@ -834,8 +882,8 @@ body {
 }
 
 .new-message-wrap {
-  -webkit-transform: translateX(-450px);
-          transform: translateX(-450px);
+  -webkit-transform: translateX(450px);
+          transform: translateX(450px);
   opacity: 0;
   position: absolute;
   bottom: 0;

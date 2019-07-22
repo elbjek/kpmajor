@@ -16,11 +16,19 @@
           <p>{{message.message_content}}</p>
         </div>
       </div>
+      <div class="messages" style="display:flex; align-items:center;" v-for="message in messages" :key="message.id">
+        <div class="img">
+          <img :src="'/storage/user_images/'+ singleconversation.profile_picture" alt />
+        </div>
+        <div class="single-message-wrap">
+          <p>{{message.message}}</p>
+        </div>
+      </div>
     </div>
       <div class="send-message">
         <i class="far fa-images"></i>
-        <input type="text" class="message-input" placeholder="Aa" v-on:click="openInput"/>
-        <i class="far fa-paper-plane"></i>
+        <input type="text" class="message-input" v-model="message" placeholder="Aa" v-on:click="openInput"/>
+        <i class="far fa-paper-plane" @click="sendmessage()"></i>
       </div>
   </div>
 </template>
@@ -38,10 +46,17 @@ export default {
       singleconversation: {},
       conversationID: "",
       show: false,
-      username: ""
+      username: "",
+      message:'',
+      messages:[],
+      user:''
     };
   },
   mounted() {
+    axios.get("/api/user").then(response => {
+      this.user = response.data;
+      console.log(this.user)
+    });
     EventBus.$on("closeSingleMesage", () => {
       this.$anime({
         targets: ".all-chat-messages",
@@ -57,47 +72,32 @@ export default {
         this.username = response.data.name;
         EventBus.$emit("sendUsername", this.username);
       });
-      this.$anime({
+        this.$anime({
         targets: ".all-chat-messages",
-        keyframes: [
-          {
-            opacity: 1,
-            height: "83%",
-            width: "100%",
-            right: "-450px",
-            duration: 200,
-            easing: "linear",
-            padding: "10px 0px 10px 0px"
-          },
-          { right: 0, duration: 250, delay: 350, easing: "linear" }
-        ]
+        easing:'linear',
+        translateX: 0,
+        duration: 200,
+        opacity: 1,
+        "z-index": 18
       });
-      this.$anime({
-        targets: ".all-messages-header",
-        keyframes: [
-          {
-            width: "100%",
-            scale: 1,
-            right: "-450px",
-            duration: 200,
-            easing: "linear"
-          }
-        ]
-      });
-      this.$anime({
-        targets: ".send-message",
-        translateX:0,
-
-      });
-      $(".all-messages-header i").css(
-        { padding: "5px 0px 20px 20px" },
-        { "border-bottom": "1px solid #f4f4f4" }
-      );
-      
-      $(".chat-messages").css({ padding: "10px 20px" });
+        this.$anime({
+        targets:'.users-wrap',
+        translateX:-$('.users-wrap').width() - 100,
+        easing: "linear",
+        duration: 150,
+        // delay: 250
+      })
+      $('.fa-comment').css({'display':'none'})
     });
   },
   methods: {
+    sendmessage(){
+      // this.messages.push('message_id',this.message)
+      // console.log(this.messages)
+      let data = {message_content:this.message}
+      // axios.post('/messages',data)
+      // .then(console.log(data))
+    },
     openInput(){
       this.$anime({
         targets:'.message-input',
@@ -122,23 +122,16 @@ export default {
       })
     },
     closeSingleChat() {
+      $('.fa-comment').css({'display':'block'})
       var el = $(".all-chat-messages").width();
       this.$anime({
         targets: ".all-chat-messages",
-        keyframes: [
-          { right: 0, duration: 50, easing: "linear" },
-          {
-            opacity: 1,
-            height: "83%",
-            width: "100%",
-            right: "-450px",
-            duration: 150,
-            easing: "linear",
-            // padding: "0px"
-          }
-        ]
+        easing:'linear',
+        translateX: el,
+        duration: 150,
+        opacity: 1,
+        "z-index": 18
       });
-
       this.$anime({
         targets: ".fa-chevron-down",
         rotate: "0deg"
@@ -146,15 +139,13 @@ export default {
       this.$anime({
         targets: ".single-chat-main-heading",
         keyframes: [
-          { translateY: 20, opacity: 0, duration: 200, easing: "linear" }
+          { translateY: 40, opacity: 0, duration: 10, easing: "linear" }
         ]
       });
       this.$anime({
         targets: ".chat-main-heading",
         translateY: 0,
         opacity: 1,
-        duration: 200,
-        easing: "linear"
       });
       let userswrap = $(".users-wrap").width() + 50;
       this.$anime({
@@ -162,9 +153,8 @@ export default {
         translateX: 0,
         easing: "linear",
         duration: 200,
-        delay: 250
+        delay: 150
       });
-      $(".all-messages-header i").css({ padding: "0" }, { border: "none" });
     }
   }
 };

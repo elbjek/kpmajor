@@ -29,11 +29,14 @@
           <newconversation></newconversation>
         </div>
         <div>
+          <singleconversation></singleconversation>
+        </div>
+        <div>
           <allconversations v-bind:conversations="messages"></allconversations>
         </div>
       </div>
     </div>
-    <singleconversation></singleconversation>
+    <!-- <singleconversation></singleconversation> -->
   </div>
 </template>
 
@@ -65,31 +68,30 @@ export default {
     this.fetchData();
     EventBus.$on("sendUsername", data => {
       this.username = data;
-
       this.$anime({
         targets: ".single-chat-main-heading",
+
         keyframes: [
-          { translateY: 40, opacity: 0 },
+          { translateY: 30, opacity: 0,duration:15 },
           {
             translateY: 0,
-            duration: 100,
+            duration: 40,
             easing: "linear",
             opacity: 1
           }
         ]
       });
+
       this.$anime({
         targets: ".chat-main-heading",
-        translateY: -40,
-        delay: 300,
-        duration: 100
+        translateY: -30,
       });
       this.$anime({
         targets: ".fa-chevron-down",
         rotate: "90deg",
         easing: "linear",
-        duration: 200,
-        delay: 250
+        duration: 100,
+        // delay: 50
       });
       let userswrap = $(".users-wrap").width() + 50;
       this.$anime({
@@ -149,9 +151,7 @@ export default {
         color: "#003368",
         opacity: 1
       });
-      // $(".close-messages-icon").css({ "z-index": "11" });
-      // $(".open-messages-icon").css({ "z-index": "10" });
-      // $('.message-button').css({'z-index':'14','visibility':'hidden'})
+      $('.message-button').css({opacity:0})
       $(".transparent-bg").addClass("transparent-bg-visible");
       $("body").addClass("overflow");
       this.$anime({
@@ -166,14 +166,7 @@ export default {
       });
     },
     closeMessages() {
-      $('.message-button').css({'z-index':'14','visibility':'visible'})
-      //       this.$anime({
-      //   targets: ".new-message-wrap",
-      //   translateX: $('.new-message-wrap').width(),
-      //   delay:200,
-      //   duration: 1000,
-      //   opacity: 0,
-      // });
+      $('.message-button').css({opacity:1})
       this.$anime({
         targets: ".message-button i",
         borderRadius: "50px",
@@ -183,68 +176,12 @@ export default {
         delay:200,
         backgroundColor: "#003368"
       });
-      // this.$anime({
-      //   targets: ".close-messages-icon",
-      //   "z-index": 10,
-      //   opacity: 0
-      //   // delay:1000
-      // });
-      // this.$anime({
-      //   targets: ".open-messages-icon",
-      //   "z-index": 11
-      //   // delay:1000
-      // });
-      // this.$anime({
-      //   targets: ".all-chat-messages",
-      //   keyframes: [
-      //     { right: 0, duration: 100, easing: "linear" },
-      //     {
-      //       opacity: 1,
-      //       height: "0%",
-      //       width: "0%",
-      //       right: "-450px",
-      //       duration: 300,
-      //       easing: "linear",
-      //       padding: "0px"
-      //     }
-      //   ]
-      // });
-      // this.$anime({
-      //   targets: ".fa-chevron-down",
-      //   rotate: "0deg"
-      // });
-      // this.$anime({
-      //   targets: ".single-chat-main-heading",
-      //   keyframes: [
-      //     // {translateY:0, opacity:1},
-      //     { translateY: 20, opacity: 0, duration: 400, easing: "linear" }
-      //   ]
-      // });
-      // this.$anime({
-      //   targets: ".chat-main-heading",
-      //   translateY: 0,
-      //   opacity: 1,
-      //   duration: 100,
-      //   easing: "linear"
-      // });
-      // let userswrap = $(".users-wrap").width() + 50;
-      // this.$anime({
-      //   targets: ".users-wrap",
-      //   translateX: 0,
-      //   easing: "linear",
-      //   duration: 200,
-      //   delay: 250
-      // });
-
       $(".transparent-bg").removeClass("transparent-bg-visible");
 
       $("body").removeClass("overflow");
       this.$anime({
         targets: ".chat-wrap",
         scale: 0,
-        // // height:0,
-        // // width:0,
-        // borderRadius: 50,
         duration: 20,
         visibility:'hidden',
         easing: "linear"

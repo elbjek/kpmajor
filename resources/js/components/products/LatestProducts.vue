@@ -1,7 +1,7 @@
 <template>
     <div class="latest-products-wrap">
         <h1>Najnoviji oglasi</h1>
-        <carousel :perPage="2.5" :loop="true" :paginationEnabled="false" >
+        <carousel :perPage="2.5" :paginationEnabled="false" :easing="'linear'" :speed="1000"   :loop="true">
             <slide class="product" v-for=" product in products" :key="product.id">
                 <router-link  :to='"/products/" + product.id' @click="emitEvent">
                     <div class="img" >

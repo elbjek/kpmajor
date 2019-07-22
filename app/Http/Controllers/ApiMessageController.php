@@ -34,8 +34,38 @@ class ApiMessageController extends Controller
         ->join('users','conversations.receiver_id','users.id')
         // ->select()
         ->first();
-
-        
         return response()->json($conversations);
+    }
+    public function store(Request $request)
+    {
+        // public function store(Request $request)
+        // {
+        //     $this->validate($request, [
+        //         'title' => 'required|min:3',
+        //         'description' => 'required|min:5',
+        //         'price' => 'required|min:1',
+        //         'image' => 'required|image|mimes:jpeg,jpg,png|max:10000',
+        //     ]);
+    
+        //     if ($request->hasFile('image')) {
+        //         $fileNameWithExt = $request->file('image')->getClientOriginalName();
+        //         $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+        //         $extension = $request->file('image')->getClientOriginalExtension();
+        //         $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+        //         $path = $request->file('image')->storeAs('public/products', $fileNameToStore);
+        //     } else {
+        //         $fileNameToStore = 'noimage.jpg';
+        //     }
+    
+        //     Product::create([
+        //         'title' => $request->title,
+        //         'description' => $request->description,
+        //         'price' => $request->price,
+        //         'image' => $fileNameToStore,
+        //         'user_id' => \Auth::id(),
+        //     ]);
+        //     return redirect('/home');
+        // }
+
     }
 }
