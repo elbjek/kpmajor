@@ -135,6 +135,10 @@ export default {
         easing: "cubicBezier(0.470, 0.000, 0.745, 0.715)",
         keyframes: [{ backgroundColor: "rgba(0,0,0,0.2)", delay: 100 }]
       });
+      this.$anime({
+        targets:".navigation2",
+        opacity:1
+      })
       this.show = true;
     },
     hideNavigation() {
@@ -150,6 +154,10 @@ export default {
         translateX: 320,
         keyframes: [{ backgroundColor: "rgba(0,0,0,0)", delay: 10 }]
       });
+      this.$anime({
+        targets:".navigation2",
+        opacity:0
+      })
     }
   },
   computed: {
@@ -201,6 +209,7 @@ export default {
   position: absolute;
   right: 0;
   transform-origin: bottom right;
+  // opacity:0;
 }
 
 ul {
