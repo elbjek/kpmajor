@@ -17,6 +17,7 @@ import CreateProduct from './components/products/CreateProduct';
 import SingleProduct from './components/products/ProductsCarousel';
 import Test from './components/Test';
 import UserProfile from './components/user_profile/Profile';
+import Categories from './components/categories/Category';
 
 
 
@@ -81,6 +82,15 @@ export default new VueRouter({
             path: '/test',
             name: 'test',
             component: EditProduct,
+        },
+        {
+            path: '/categories/:id',
+            name: 'category',
+            component: Categories,
+            meta: {
+                auth: false,
+                transition:'fade-in-down'
+            }
         },
         // { path: '*', 
         // component: NotFoundComponent }

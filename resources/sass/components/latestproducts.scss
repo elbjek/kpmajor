@@ -8,29 +8,37 @@
     .product{
         // margin:10px;
         color:$darkblue;
-        .product-content{
+      a{
+          position: relative;
+          width:100%;
+          .product-content{
             margin-top:15px;
+            position: absolute;
+            left:20px;
+            bottom:10px;
+            color:white;
             h6{
-                font-size:16px;
-                font-weight:700;
-                color:$darkblue;
+                font-size:20px;
+                font-weight:900;
                 text-transform: capitalize;
+                margin-bottom:5px;
             }
             p{
-                margin:0;
-                color:$darkblue;
+                margin: 0;
+                font-weight: 600;
             }
         }
         .img{
             height:160px;
-            width:125px;
+            width:100%;
             background-color: $light-gray;
             border-radius:8px;
             overflow: hidden;
             img{
-                height:100%;
+                height:auto;
                 width:auto;
             }
         }  
+      }
     } 
 }

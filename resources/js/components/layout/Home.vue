@@ -2,6 +2,7 @@
    <div>  
       <search></search>
      <latestproducts></latestproducts>
+     <categories></categories>
      <productslist></productslist>
      <messages></messages>
    </div>
@@ -10,15 +11,17 @@
 <script>
 import latestproducts from '../products/LatestProducts';
 import productslist from '../products/ProductsList';
-import search from '../shared/Search'
-import messages from '../messages/Messages'
+import search from '../shared/Search';
+import messages from '../messages/Messages';
+import categories from '../products/Categories';
 
   export default {
     components: {
       'latestproducts':latestproducts,
       'productslist':productslist,
       'search':search,
-      'messages':messages
+      'messages':messages,
+      'categories':categories
     }
   }
 </script>
