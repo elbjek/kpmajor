@@ -1,6 +1,6 @@
 <template>
   <div class="products-list-wrap">
-    <h2>Svi oglasi</h2>
+    <h2>Svi oglasi Test</h2>
     <v-touch
       v-on:swipeleft="showOptions(product,$event)"
       v-on:swiperight.prevent="hideOptions(product,$event)"
