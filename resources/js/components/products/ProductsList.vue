@@ -3,7 +3,7 @@
     <h2>Svi oglasi</h2>
     <v-touch
       v-on:swipeleft="showOptions(product,$event)"
-      v-on:swiperight.prevent="hideOptions(product,$event)"
+      v-on:swiperight="hideOptions(product,$event)"
       ref="target"
       v-for="product in products"
       :key="product.id"

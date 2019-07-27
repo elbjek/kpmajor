@@ -82,7 +82,7 @@ export default {
         translateY: 0,
         opacity: 1,
         "max-height": "40%",
-        height: "40%",
+        height: "auto",
         padding:'10px 20px'
       });
     },
@@ -133,7 +133,7 @@ export default {
           targets: ".user-list",
           translateY: 0,
           opacity: 1,
-          "max-height": "40%",
+          "max-height": "auto",
           height: "auto"
         });
 
@@ -162,7 +162,7 @@ export default {
           targets: ".user-list",
           translateY: 0,
           opacity: 1,
-          "max-height": "40%",
+          "max-height": "auto",
           height: "auto"
         });
 }

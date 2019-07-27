@@ -89,7 +89,7 @@ export default new VueRouter({
             component: Categories,
             meta: {
                 auth: false,
-                transition:'fade-in-down'
+                transition:'flip-x'
             }
         },
         // { path: '*', 
