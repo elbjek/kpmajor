@@ -34,7 +34,6 @@ export default {
   mounted() {
     EventBus.$on("sendComments", data => {
       this.comments = data;
-      console.log(this.comments)
     });
   },
   computed: {

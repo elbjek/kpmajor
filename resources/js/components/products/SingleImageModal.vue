@@ -19,7 +19,6 @@ import { Carousel, Slide } from 'vue-carousel';
         },
         beforeMount() {
           this.allImages = this.images.images;
-          console.log(this.images)
         },
         methods:{
         

@@ -20,7 +20,7 @@ class ApiCategoriesController extends Controller
         // $categories = Category::with('products')->get();
         $product = Product::join('categories','categories.id','=','products.category_id')
         ->join('users','users.id','=','products.user_id')
-        ->selectRaw('products.*, categories.title as category_title,users.*, products.id as product_id, users.id as user_id ')
+        ->selectRaw('products.*, categories.title as category_title,users.*, products.id as product_id, users.id as users_id ')
         ->where('products.category_id',$category->id)
         ->get();
            return response()->json($product);

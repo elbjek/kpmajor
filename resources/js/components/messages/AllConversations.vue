@@ -35,13 +35,9 @@ export default {
       conversationID:''
     };
   },
-  mounted() {
-    //   console.log(this.conversations)
-  },
   methods:{
     showMessages(index){
       this.conversationID = index
-      // console.log(index);
        EventBus.$emit('getConversationID',this.conversationID)
        
     }

@@ -62,7 +62,6 @@
                 axios.get('/api/products/create')
                     .then(response => {
                         this.userid = response.data.user;
-                        console.log(response.data)
                     })
                     .catch((err) => {
                         console.log(err)

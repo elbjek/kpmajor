@@ -28,9 +28,6 @@ export default new VueRouter({
             path: '/',
             name: 'home',
             component: Home,
-            meta:{
-                transition:'fade-in-right'
-            }
         },
         {
             path: '/login',
@@ -89,7 +86,7 @@ export default new VueRouter({
             component: Categories,
             meta: {
                 auth: false,
-                transition:'flip-x'
+                transition:'zoom'
             }
         },
         // { path: '*', 

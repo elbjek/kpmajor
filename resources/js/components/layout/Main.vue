@@ -1,8 +1,8 @@
 <template>
   <div>
       <navigation :user="user"></navigation>
-      <div class="container" style="padding-top:20px">
-      <vue-page-transition name="fade-in-left">
+      <div class="container" style="padding-top:60px">
+      <vue-page-transition name="fade-in-down">
         <router-view></router-view>
       </vue-page-transition>
       </div>
@@ -31,25 +31,6 @@ export default {
     beforeLeave(element) {
       this.prevHeight = getComputedStyle(element).height;
     }
-    //   showNav(event){
-    //   // var x = document.getElementById("x");
-    //   // var y = document.getElementById("y");
-    //   // var target = document.getElementById('navtest')
-    //   // // console.log({event:event},{target:target})
-    //   //           x.innerHTML = event.deltaX;
-    //   //           y.innerHTML = event.deltaY;
-    //   //         $('#navtest').css({'left': event.center.x},{scaleX:1.5});
-
-    //   //           // $('#navtest').css('top', event.center.y);
-    //   console.log('hi')
-    //  var test = $(window).width() + (-event.deltaX);
-    //   $('.py-4').css('left',event.deltaX);
-    //   // $('.test').addClass('test2');
-    //   // if(event.deltaX >= -210 ){
-    //   //   //  this.$refs.pan.disable('pan')
-    //   // console.log(event.deltaX)
-    //   // }
-    // }
   }
 };
 </script>

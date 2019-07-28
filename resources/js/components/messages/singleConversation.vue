@@ -55,7 +55,6 @@ export default {
   mounted() {
     axios.get("/api/user").then(response => {
       this.user = response.data;
-      console.log(this.user)
     });
     EventBus.$on("closeSingleMesage", () => {
       this.$anime({
@@ -68,7 +67,6 @@ export default {
       this.conversationID = id;
       axios.get("/api/conversations/" + this.conversationID).then(response => {
         this.singleconversation = response.data;
-        console.log(response.data);
         this.username = response.data.name;
         EventBus.$emit("sendUsername", this.username);
       });
@@ -92,11 +90,7 @@ export default {
   },
   methods: {
     sendmessage(){
-      // this.messages.push('message_id',this.message)
-      // console.log(this.messages)
       let data = {message_content:this.message}
-      // axios.post('/messages',data)
-      // .then(console.log(data))
     },
     openInput(){
       this.$anime({

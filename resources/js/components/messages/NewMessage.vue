@@ -69,12 +69,10 @@ export default {
   mounted() {
     axios.get("/api/users").then(response => {
       this.users = response.data;
-      console.log(this.users);
     });
   },
   methods: {
     sendmessage(event){
-      console.log('hi')
     },
     showAllUsers() {
       this.$anime({

@@ -39,21 +39,21 @@
         axios.post('/login',this.fields)
         .then(result=>{
           this.response = result;
-          this.$router.go('/')
+          this.$router.go('/');
+            $('.login-form-wrap').addClass('confirm') 
+               setTimeout(()=>{
+             $('.login-form-wrap').removeClass('confirm') 
+             },1000)
         })
         .catch(error => {
           if (error.response.status === 422) {
-            this.$anime({
-              targets:'.login-form-wrap',
-              keyframes:[
-              {translateX:10,skewY:2},
-              {translateX:-10,skewY:-2},
-              {translateX:0,skewY:0}],
-              duration:150,
-              easing:'linear'
-            })
+             $('.login-form-wrap').addClass('shake') 
+             setTimeout(()=>{
+             $('.login-form-wrap').removeClass('shake') 
+             },1000)
           this.errors = error.response.data.errors || {};
-        }
+        } 
+
         if(jQuery.isEmptyObject(error.response.data.errors)){
               $(".input-form").removeClass('error-border')
             } else $(".input-form").addClass('error-border')
