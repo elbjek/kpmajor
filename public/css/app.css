@@ -988,6 +988,15 @@ body {
   padding-left: 20px;
 }
 
+.new-message-wrap .user-list-visible {
+  -webkit-transform: translateY(0) !important;
+          transform: translateY(0) !important;
+  opacity: 1 !important;
+  max-height: 40% !important;
+  transition: all 0.3s ease !important;
+  background-color: #f4f4f4 !important;
+}
+
 .new-message-wrap .sendtouser {
   padding: 10px 20px;
   align-items: center;
@@ -1056,12 +1065,14 @@ body {
 }
 
 .new-message-wrap .user-list {
-  height: 0;
+  max-height: 0%;
   overflow: scroll;
   padding: 0px;
-  background-color: #f4f4f4;
+  background-color: #ffffff;
   margin: 0px 20px;
   border-radius: 8px;
+  padding: 10px 20px;
+  transition: all 0.2s ease-out;
 }
 
 .new-message-wrap .user-list .single-listed-user {

@@ -6,7 +6,7 @@
     >
       <div class="chat-heading" style="display:flex;align-items:center;">
         <p style="display:flex; flex-direction:column;margin:0">
-           <i  class="fas fa-chevron-down" style="padding:0px 20px;"></i>
+          <i class="fas fa-chevron-down" style="padding:0px 20px;"></i>
           <!-- <span class="chat-main-heading" style="margin:0;padding-right:20px;">Nova poruka</span> -->
           <span class="single-chat-main-heading"></span>
         </p>
@@ -22,7 +22,7 @@
         v-model="search"
         class="sendtouser"
         @click="showAllUsers"
-        @keyup="filterUsers"
+        @keypress="filterUsers"
         placeholder="Trazi"
       />
       <div v-if="show" class="selectedUser" @click="removeUser">
@@ -31,23 +31,25 @@
       </div>
     </div>
     <div class="user-list">
-      <div
-        class="single-listed-user"
-        v-for="user in filteredUsers"
-        :key="user.id"
-        @click="selectUser(user)"
-      >
-        <div class="img">
-          <img :src="'/storage/user_images/'+user.profile_picture" alt />
+      <div height="inherit">
+        <div
+          class="single-listed-user"
+          v-for="user in filteredUsers"
+          :key="user.id"
+          @click="selectUser(user)"
+        >
+          <div class="img">
+            <img :src="'/storage/user_images/'+user.profile_picture" alt />
+          </div>
+          <p>{{user.name}} {{user.lastname}}</p>
         </div>
-        <p>{{user.name}} {{user.lastname}}</p>
       </div>
     </div>
     <div class="message-content"></div>
     <div class="send-message">
-      <i class="far fa-images" ></i>
+      <i class="far fa-images"></i>
       <input type="text" class="message-input" placeholder="Aa" />
-      <i class="far fa-paper-plane"  ></i>
+      <i class="far fa-paper-plane"></i>
     </div>
   </div>
 </template>
@@ -63,7 +65,7 @@ export default {
       search: "",
       users: [],
       selectedUsers: [],
-      selectedUser: "",
+      selectedUser: ""
     };
   },
   mounted() {
@@ -72,8 +74,7 @@ export default {
     });
   },
   methods: {
-    sendmessage(event){
-    },
+    sendmessage(event) {},
     showAllUsers() {
       this.$anime({
         targets: ".user-list",
@@ -81,11 +82,12 @@ export default {
         opacity: 1,
         "max-height": "40%",
         height: "auto",
-        padding:'10px 20px'
+        padding: "10px 20px"
       });
+      $(".user-list").addClass("user-list-visible");
     },
     closeMessage() {
-      $('.fa-chevron-down').css({'opacity':1})
+      $(".fa-chevron-down").css({ opacity: 1 });
 
       this.$anime({
         targets: ".new-message-wrap",
@@ -95,37 +97,36 @@ export default {
         opacity: 0
       });
       this.$anime({
-        targets:'.createmsg i ',
-        rotate:0
-      })
-        this.$anime({
-        targets:'.users-wrap',
-        translateX:0,
-        easing:'linear',
-        duration:250
-      })
+        targets: ".createmsg i ",
+        rotate: 0
+      });
       this.$anime({
-      targets:'.chat-new-heading',
-      keyframes:[
-        {  translateY:0,
-      opacity:1,duration:10},
-        {translateY:30,opacity:0,duration:450},
-      ]
-    })
+        targets: ".users-wrap",
+        translateX: 0,
+        easing: "linear",
+        duration: 250
+      });
       this.$anime({
-      targets:'.chat-main-heading',
-      translateY:0
-    })
+        targets: ".chat-new-heading",
+        keyframes: [
+          { translateY: 0, opacity: 1, duration: 10 },
+          { translateY: 30, opacity: 0, duration: 450 }
+        ]
+      });
+      this.$anime({
+        targets: ".chat-main-heading",
+        translateY: 0
+      });
     },
     filterUsers() {
       if (this.search === "" || this.search.length == 0) {
         this.$anime({
           targets: ".user-list",
           translateY: -20,
-          opacity: 0
-          //   height:0
+          opacity: 0,
+          duration:300,
+          'max-height':'0'
         });
-
       } else {
         this.$anime({
           targets: ".user-list",
@@ -134,36 +135,39 @@ export default {
           "max-height": "auto",
           height: "auto"
         });
-
+        $(".user-list").addClass("user-list-visible");
       }
     },
     selectUser(data) {
       this.show = true;
       this.selectedUser = data;
-              this.$anime({
-          targets: ".user-list",
-          translateY: -20,
-          opacity: 0
-          //   height:0
-        });
+      this.$anime({
+        targets: ".user-list",
+        translateY: -20,
+        opacity: 0,
+        'max-height':'0'
+        //   height:0
+      });
+      $(".user-list").removeClass("user-list-visible");
     },
-    removeUser(){
-        this.$anime({
-            targets:'.selectedUser',
-            scaleX:0,
-            opacity:0
-        })
-        setTimeout(()=>{
-           this.show=false
-        },100)
-        this.$anime({
-          targets: ".user-list",
-          translateY: 0,
-          opacity: 1,
-          "max-height": "auto",
-          height: "auto"
-        });
-}
+    removeUser() {
+      this.$anime({
+        targets: ".selectedUser",
+        scaleX: 0,
+        opacity: 0
+      });
+      setTimeout(() => {
+        this.show = false;
+      }, 100);
+      this.$anime({
+        targets: ".user-list",
+        translateY: 0,
+        opacity: 1,
+        "max-height": "auto",
+        height: "auto"
+      });
+      $(".user-list").addClass("user-list-visible");
+    }
   },
   computed: {
     filteredUsers: function() {

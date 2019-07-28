@@ -118,6 +118,7 @@ export default {
     closeSingleChat() {
       $('.fa-comment').css({'display':'block'})
       var el = $(".all-chat-messages").width();
+      this.message = ''
       this.$anime({
         targets: ".all-chat-messages",
         easing:'linear',

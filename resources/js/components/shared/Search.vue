@@ -13,7 +13,7 @@
             placeholder="Pretraga"
             @click="showFilters"
             v-model="query"
-            v-on:keyup="additionalQuery"
+            v-on:keydown="additionalQuery"
           >
         </div>
         <!-- <div class="searchicon" v-show="hide">

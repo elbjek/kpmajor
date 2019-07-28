@@ -5389,6 +5389,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5417,12 +5419,13 @@ __webpack_require__.r(__webpack_exports__);
         opacity: 1,
         "max-height": "40%",
         height: "auto",
-        padding: '10px 20px'
+        padding: "10px 20px"
       });
+      $(".user-list").addClass("user-list-visible");
     },
     closeMessage: function closeMessage() {
-      $('.fa-chevron-down').css({
-        'opacity': 1
+      $(".fa-chevron-down").css({
+        opacity: 1
       });
       this.$anime({
         targets: ".new-message-wrap",
@@ -5432,17 +5435,17 @@ __webpack_require__.r(__webpack_exports__);
         opacity: 0
       });
       this.$anime({
-        targets: '.createmsg i ',
+        targets: ".createmsg i ",
         rotate: 0
       });
       this.$anime({
-        targets: '.users-wrap',
+        targets: ".users-wrap",
         translateX: 0,
-        easing: 'linear',
+        easing: "linear",
         duration: 250
       });
       this.$anime({
-        targets: '.chat-new-heading',
+        targets: ".chat-new-heading",
         keyframes: [{
           translateY: 0,
           opacity: 1,
@@ -5454,7 +5457,7 @@ __webpack_require__.r(__webpack_exports__);
         }]
       });
       this.$anime({
-        targets: '.chat-main-heading',
+        targets: ".chat-main-heading",
         translateY: 0
       });
     },
@@ -5463,8 +5466,9 @@ __webpack_require__.r(__webpack_exports__);
         this.$anime({
           targets: ".user-list",
           translateY: -20,
-          opacity: 0 //   height:0
-
+          opacity: 0,
+          duration: 300,
+          'max-height': '0'
         });
       } else {
         this.$anime({
@@ -5474,6 +5478,7 @@ __webpack_require__.r(__webpack_exports__);
           "max-height": "auto",
           height: "auto"
         });
+        $(".user-list").addClass("user-list-visible");
       }
     },
     selectUser: function selectUser(data) {
@@ -5482,15 +5487,17 @@ __webpack_require__.r(__webpack_exports__);
       this.$anime({
         targets: ".user-list",
         translateY: -20,
-        opacity: 0 //   height:0
+        opacity: 0,
+        'max-height': '0' //   height:0
 
       });
+      $(".user-list").removeClass("user-list-visible");
     },
     removeUser: function removeUser() {
       var _this2 = this;
 
       this.$anime({
-        targets: '.selectedUser',
+        targets: ".selectedUser",
         scaleX: 0,
         opacity: 0
       });
@@ -5504,6 +5511,7 @@ __webpack_require__.r(__webpack_exports__);
         "max-height": "auto",
         height: "auto"
       });
+      $(".user-list").addClass("user-list-visible");
     }
   },
   computed: {
@@ -5659,6 +5667,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         'display': 'block'
       });
       var el = $(".all-chat-messages").width();
+      this.message = '';
       this.$anime({
         targets: ".all-chat-messages",
         easing: 'linear',
@@ -68379,7 +68388,7 @@ var render = function() {
         domProps: { value: _vm.search },
         on: {
           click: _vm.showAllUsers,
-          keyup: _vm.filterUsers,
+          keypress: _vm.filterUsers,
           input: function($event) {
             if ($event.target.composing) {
               return
@@ -68408,37 +68417,39 @@ var render = function() {
         : _vm._e()
     ]),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "user-list" },
-      _vm._l(_vm.filteredUsers, function(user) {
-        return _c(
-          "div",
-          {
-            key: user.id,
-            staticClass: "single-listed-user",
-            on: {
-              click: function($event) {
-                return _vm.selectUser(user)
-              }
-            }
-          },
-          [
-            _c("div", { staticClass: "img" }, [
-              _c("img", {
-                attrs: {
-                  src: "/storage/user_images/" + user.profile_picture,
-                  alt: ""
+    _c("div", { staticClass: "user-list" }, [
+      _c(
+        "div",
+        { attrs: { height: "inherit" } },
+        _vm._l(_vm.filteredUsers, function(user) {
+          return _c(
+            "div",
+            {
+              key: user.id,
+              staticClass: "single-listed-user",
+              on: {
+                click: function($event) {
+                  return _vm.selectUser(user)
                 }
-              })
-            ]),
-            _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(user.name) + " " + _vm._s(user.lastname))])
-          ]
-        )
-      }),
-      0
-    ),
+              }
+            },
+            [
+              _c("div", { staticClass: "img" }, [
+                _c("img", {
+                  attrs: {
+                    src: "/storage/user_images/" + user.profile_picture,
+                    alt: ""
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(user.name) + " " + _vm._s(user.lastname))])
+            ]
+          )
+        }),
+        0
+      )
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "message-content" }),
     _vm._v(" "),
@@ -70584,7 +70595,7 @@ var render = function() {
             domProps: { value: _vm.query },
             on: {
               click: _vm.showFilters,
-              keyup: _vm.additionalQuery,
+              keydown: _vm.additionalQuery,
               input: function($event) {
                 if ($event.target.composing) {
                   return
